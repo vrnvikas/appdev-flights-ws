@@ -17,7 +17,7 @@ node
 	stage'sonar_tests'
 		sonar_tests()
 		
-
+	}
 	catch(e) 
 		{
 		currentBuild.result = "FAILED"	
@@ -27,7 +27,7 @@ node
 		{
 			print "done"
 		}	
-	}
+	
 	
 // Function definitions start from here 
 	
