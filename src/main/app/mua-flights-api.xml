@@ -3,7 +3,7 @@
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
-    <http:listener-config name="mua-flights-api-httpListenerConfig" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
+    <http:listener-config name="mua-flights-api-httpListenerConfig" host="0.0.0.0" port="8082" doc:name="HTTP Listener Configuration"/>
     <apikit:config name="mua-flights-api-config" raml="mua-flights-api.raml" consoleEnabled="false" doc:name="Router"/>
     <flow name="mua-flights-api-main">
         <http:listener config-ref="mua-flights-api-httpListenerConfig" path="/api/*" doc:name="HTTP"/>

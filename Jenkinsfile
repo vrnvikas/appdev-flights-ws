@@ -4,20 +4,23 @@ node
 		{
 			
 			//Download code from stash  
-    stage'download_stash_code'
-		download_stash_code()
-//perform maven clean 
-    stage'clean'
-		clean()
-//perform maven munit tests     	
-	stage'munit_tests'
-		munit_tests()
+    		stage'download_stash_code'
+				download_stash_code()
+			//perform maven clean 
+    		stage'clean'
+				clean()
+			//perform maven munit tests     	
+			stage'munit_tests'
+				munit_tests()
 
-	//perform maven munit tests     	
-	stage'sonar_tests'
-		sonar_tests()
+			//perform maven munit tests     	
+			stage'sonar_tests'
+				sonar_tests()
+
+			stage'deploy_to_artifactory'
+				push_to_artifactory()
 		
-	}
+		}
 	catch(e) 
 		{
 		currentBuild.result = "FAILED"	
@@ -47,11 +50,18 @@ def munit_tests()
 	{
 	bat "mvn test"  
 	}
-
+//Function definition to perform sonar tests 
 def sonar_tests()
 {
 	bat "mvn clean sonar:sonar"
 }
+//Function definition to perform artifactory deploy 
+def push_to_artifactory()
+{
+	bat "mvn deploy"
+}
+
+
 
 
 
