@@ -1,9 +1,8 @@
 node
 {
-    try
-		{
+   
 			
-			//Download code from stash  
+//Download code from stash  
     stage'download_stash_code'
 		download_stash_code()
 //perform maven clean 
@@ -17,18 +16,6 @@ node
 	stage'sonar_tests'
 		sonar_tests()
 		
-
-	catch(e) 
-		{
-		currentBuild.result = "FAILED"	
-		throw(e)
-		} 
-    finally 
-		{
-		
-		}	
-	}
-	
 // Function definitions start from here 
 	
 //Function definition for downloading code from Stash to workspace in jenkins 	
