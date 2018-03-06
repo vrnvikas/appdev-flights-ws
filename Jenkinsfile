@@ -27,7 +27,7 @@ node
 		{
 			print "done"
 		}	
-	
+}	
 	
 // Function definitions start from here 
 	
@@ -51,8 +51,6 @@ def munit_tests()
 def sonar_tests()
 {
 	sh "mvn clean sonar:sonar"
-}
-
 }
 
 
