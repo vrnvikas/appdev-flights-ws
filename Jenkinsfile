@@ -43,22 +43,22 @@ def download_stash_code()
 //Function definition to perform maven clean 
 def clean()
 	{
-	bat "mvn clean"
+	sh "mvn clean"
 	} 
 //Function definition to perform maven tests 	
 def munit_tests()
 	{
-	bat "mvn test"  
+	sh "mvn test"  
 	}
 //Function definition to perform sonar tests 
 def sonar_tests()
 {
-	bat "mvn clean sonar:sonar"
+	sh "mvn clean sonar:sonar"
 }
 //Function definition to perform artifactory deploy 
 def push_to_artifactory()
 {
-	bat "mvn deploy"
+	sh "mvn deploy"
 }
 
 
