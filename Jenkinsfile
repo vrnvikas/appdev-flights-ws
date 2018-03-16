@@ -4,28 +4,38 @@ node
 		{
 			
 			//Download code from stash  
-    		stage'download_stash_code'
+    		stage('download_stash_code'){
 				download_stash_code()
+    		}
 			//perform maven clean 
-    		stage'clean'
+    		stage('clean'){
 				clean()
+    		}
 			//perform maven munit tests     	
-			        stage('clean') {
+			stage('clean') {
 
-          
-                 bat 'mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml'
-         
-
-     
-
-        }
-
+				bat 'mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml'
+				junit '**/target/*-reports/TEST-*.xml'
+    			step([$class: 'CoberturaPublisher', coberturaReportFile: 'target/site/cobertura/coverage.xml'])
+    			
+			}
 			//perform maven munit tests     	
-			stage'sonar_tests'
+			stage('sonar_tests'){
 				sonar_tests()
+			}
 
-			stage'deploy_to_artifactory'
+			stage('sonar_tests'){
+				sonar_tests()
+			}
+
+			stage('sonar_tests_coverage'){
+
+				bat 'mvn jacoco:prepare-agent test jacoco:report'
+			}
+
+			stage('deploy_to_artifactory'){
 				push_to_artifactory()
+			}
 		
 		}
 	catch(e) 
@@ -60,9 +70,6 @@ def munit_tests()
 //Function definition to perform sonar tests 
 def sonar_tests()
 {	
-
-	junit '**/target/*-reports/TEST-*.xml'
-    step([$class: 'CoberturaPublisher', coberturaReportFile: 'target/site/cobertura/coverage.xml'])
 	bat "mvn clean sonar:sonar"
 }
 //Function definition to perform artifactory deploy 
