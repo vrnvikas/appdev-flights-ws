@@ -13,7 +13,7 @@ node
 			        stage('clean') {
 
             steps {
-                 sh 'mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml'
+                 bat 'mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml'
             }
 
             post {
