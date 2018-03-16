@@ -10,8 +10,20 @@ node
     		stage'clean'
 				clean()
 			//perform maven munit tests     	
-			stage'munit_tests'
-				munit_tests()
+			        stage('clean') {
+
+            steps {
+                 sh 'mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml'
+            }
+
+            post {
+                always {
+                    junit '**/target/*-reports/TEST-*.xml'
+                    step([$class: 'CoberturaPublisher', coberturaReportFile: 'target/site/cobertura/coverage.xml'])
+                }
+            }
+
+        }
 
 			//perform maven munit tests     	
 			stage'sonar_tests'
