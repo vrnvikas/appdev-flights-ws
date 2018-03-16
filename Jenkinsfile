@@ -12,16 +12,11 @@ node
 			//perform maven munit tests     	
 			        stage('clean') {
 
-            steps {
+          
                  bat 'mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml'
-            }
+         
 
-            post {
-                always {
-                    junit '**/target/*-reports/TEST-*.xml'
-                    step([$class: 'CoberturaPublisher', coberturaReportFile: 'target/site/cobertura/coverage.xml'])
-                }
-            }
+     
 
         }
 
@@ -64,7 +59,10 @@ def munit_tests()
 	}
 //Function definition to perform sonar tests 
 def sonar_tests()
-{
+{	
+
+	junit '**/target/*-reports/TEST-*.xml'
+    step([$class: 'CoberturaPublisher', coberturaReportFile: 'target/site/cobertura/coverage.xml'])
 	bat "mvn clean sonar:sonar"
 }
 //Function definition to perform artifactory deploy 
