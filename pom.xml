@@ -42,7 +42,7 @@
     <snapshotRepository>
         <id>artifactory</id>
         <name>artifactory</name>
-        <url>http://ec2-13-127-197-79.ap-south-1.compute.amazonaws.com/libs-snapshot-local</url>
+        <url>http://ec2-13-127-197-79.ap-south-1.compute.amazonaws.com:8081/libs-snapshot-local</url>
     </snapshotRepository>
 </distributionManagement>
 
