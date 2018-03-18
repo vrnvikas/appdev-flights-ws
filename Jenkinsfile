@@ -71,7 +71,7 @@ def sonar_tests()
 //Function definition to perform artifactory deploy 
 def push_to_artifactory()
 {
-	bat "mvn deploy"
+	bat "mvn deploy -DskipTests"
 }
 
 

@@ -24,7 +24,7 @@
 
     </properties>
 
-    <distributionManagement>
+<!--     <distributionManagement>
     <snapshotRepository>
         <id>snapshots</id>
         <name>LIN19001415-snapshots</name>
@@ -36,7 +36,15 @@
         <url>http://localhost:8081/artifactory/libs-release-local</url>
     </repository>
 </distributionManagement>
+ -->
 
+<distributionManagement>
+    <snapshotRepository>
+        <id>artifactory</id>
+        <name>artifactory</name>
+        <url>${artifactory_url}</url>
+    </snapshotRepository>
+</distributionManagement>
 
 	<build>
 		<plugins>
