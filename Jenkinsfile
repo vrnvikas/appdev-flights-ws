@@ -12,20 +12,16 @@ node
 				clean()
     		}
 			//perform maven munit tests     	
-			stage('clean') {
+			stage('munit') {
 
 				bat 'mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml'
-				junit '**/target/munit-reports/coverage/*.xml'
+				junit '**/target/*-reports/TEST-*.xml'
     			step([$class: 'CoberturaPublisher', coberturaReportFile: 'target/site/cobertura/coverage.xml'])
     			
 			}
 			//perform maven munit tests     	
-			stage('sonar_tests'){
-				sonar_tests()
-			}
-
-			stage('sonar_tests'){
-				sonar_tests()
+			stage('spublish result'){
+				publish_html()
 			}
 
 			stage('sonar_tests_coverage'){
@@ -79,7 +75,22 @@ def push_to_artifactory()
 }
 
 
-
+def publish_html()
+{   
+	def exists = fileExists 'target/munit-reports/coverage/summary.html'
+	if (exists) 
+	{
+		echo 'html report file is generated'
+		publishHTML (target: [
+		allowMissing: false,
+		alwaysLinkToLastBuild: false,
+		keepAll: true,
+		reportDir: 'target/munit-reports/coverage',
+		reportFiles: 'summary.html',
+		reportName: "Coverage Report" ])
+	} 
+		
+}	
 
 
 
