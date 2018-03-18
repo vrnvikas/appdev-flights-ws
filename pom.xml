@@ -37,6 +37,16 @@
     </repository>
 </distributionManagement>
  -->
+<servers>
+    <server>
+      <id>snapshots</id>
+      <username>admin</username>
+      <password>admin</password>
+    </server>
+  
+  
+</servers>
+
 
 <distributionManagement>
     <snapshotRepository>
