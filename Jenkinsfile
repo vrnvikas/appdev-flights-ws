@@ -15,7 +15,7 @@ node
 			stage('clean') {
 
 				bat 'mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml'
-				junit '**/target/*-reports/TEST-*.xml'
+				junit '**/target/munit-reports/coverage/*.xml'
     			step([$class: 'CoberturaPublisher', coberturaReportFile: 'target/site/cobertura/coverage.xml'])
     			
 			}
